@@ -24,8 +24,14 @@ export default function ModuleRoutes(app) {
         res.json(modules);
     }
 
+    const findAllModules = async (req, res) => {
+        const modules = await dao.findAllModules();
+        res.json(modules);
+    }   
+
     app.post("/api/courses/:cid/modules", createModule);
     app.put("/api/modules/:mid", updateModule);
     app.delete("/api/modules/:mid", deleteModule);
     app.get("/api/courses/:cid/modules", findModulesByCourse);
+    app.get("/api/modules", findAllModules);
 }
