@@ -2,11 +2,10 @@ import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import session from "express-session";
-import Hello from "./Hello.js";
-import Lab5 from "./Lab5/index.js";
 import CourseRoutes from "./Kanbas/Courses/routes.js";
 import ModuleRoutes from "./Kanbas/Modules/routes.js";
 import AssignmentRoutes from "./Kanbas/Assignments/routes.js";
+import QuizRoutes from "./Kanbas/Quizzes/routes.js";
 import UserRoutes from "./Users/routes.js";
 import cors from "cors";
 const CONNECTION_STRING =
@@ -34,10 +33,9 @@ if (process.env.NODE_ENV !== "development") {
 }
 app.use(session(sessionOptions));
 app.use(express.json());
+QuizRoutes(app);
 UserRoutes(app);
 AssignmentRoutes(app);
 ModuleRoutes(app);
 CourseRoutes(app);
-Lab5(app);
-Hello(app);
 app.listen(process.env.PORT || 4000);
